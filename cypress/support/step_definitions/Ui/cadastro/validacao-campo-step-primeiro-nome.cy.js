@@ -5,22 +5,16 @@ const email = faker.internet.email(nomeUsuario)
 import { Given, When, Then, } from "@badeball/cypress-cucumber-preprocessor";
 
 
-
-
-
-
-
-Given(/^que o cliente acesse o site Automation Exercise$/, () => {
-	cy.visit('/login')
+When(/^faça o pré-cadastro$/, () => {
+    cy.get(elements.campoNome).type(nomeUsuario)
+cy.get(elements.campoEmail).type(email)
+cy.get(elements.btnSingUp).click()
 });
 
-When(/^realize o seu cadastro com sucessso$/, () => {
-	//pre-cadastro
-	// const nomeUsuario = faker.name.firstName
-	// const email = faker.internet.email(nomeUsuario)
-	cy.get(elements.campoNome).type(nomeUsuario)
-	cy.get(elements.campoEmail).type(email)
-	cy.get(elements.btnSingUp).click()
+
+
+//Teste sem assertiva no momento.
+When(/^preencha todos os campos do formulario exceto o campo primeiro nome$/, () => {
 
 	//cadastro
 	const anoAleatorio = Cypress._.random(1900, 2021);
@@ -34,7 +28,7 @@ When(/^realize o seu cadastro com sucessso$/, () => {
 	});
 	cy.get(elements.anoNascimento).select(anoAleatorio.toString());
 	cy.get(elements.checkBoxe).check()
-	cy.get(elements.primeiroNome).type(faker.name.firstName())
+	//cy.get(elements.primeiroNome).type(faker.name.firstName())
 	cy.get(elements.ultimoNome).type(faker.name.lastName())
 	cy.get(elements.nomeEmpresa).type(faker.company.companyName())
 	cy.get(elements.nomeRua).type(faker.address.streetName())
@@ -44,22 +38,14 @@ When(/^realize o seu cadastro com sucessso$/, () => {
 	cy.get(elements.cep).type(faker.address.zipCode())
 	cy.get(elements.numeroTelefone).type(faker.phone.phoneNumber())
 	cy.get(elements.btnCriarConta).click()
-	cy.contains(elements.msgDeContaCriada).should('be.visible')
-
-
+	
+   
 });
 
-When(/^tentar se cadastrar novamente$/, () => {
-	cy.get(elements.btnSingupOrLogin).click()
-	cy.get(elements.btnLogout).click()
-	cy.get(elements.campoNome).type(nomeUsuario)
-	cy.get(elements.campoEmail).type(email)
-	cy.get(elements.btnSingUp).click()
+// When(/^tentar se cadastrar novamente$/, () => {
+	
+// });
 
-});
-
-Then(/^ele deverá receber uma mensagem de que o e-mail já existe$/, () => {
-	cy.get(elements.errorEmailExistente).should('have.text', elements.msgErrorEmailExistente)
-});
-
-
+// Then(/^ele deverá receber uma mensagem de que o campo primeiro nome é obrigatório$/, () => {
+// 	return true;
+// });

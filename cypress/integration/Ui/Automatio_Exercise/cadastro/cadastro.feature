@@ -16,20 +16,20 @@ Feature: Tela de cadastro
         When tentar se cadastrar novamente
         Then ele deverá receber uma mensagem de que o e-mail já existe
 
+        
+        Scenario: Validação dos campo obrigatório primeiro nome
 
-        # Scenario: Validação dos campos obrigatórios
-
-        # Given que o cliente acesse o site Automation Exercise
-        # And faça o pré-cadastro
-        # And preencha todos os campos do formulario exceto o campo primeiro nome
+        Given que o cliente acesse o site Automation Exercise
+        And faça o pré-cadastro
+        And preencha todos os campos do formulario exceto o campo primeiro nome
         # When tentar se cadastrar novamente
         # Then ele deverá receber uma mensagem de que o campo primeiro nome é obrigatório
 
-        # Scenario: Validação dos campos obrigatórios
+        Scenario: Validação do campo obrigatório senha
 
-        # Given que o cliente acesse o site Automation Exercise
-        # And faça o pré-cadastro
-        # And preencha todos os campos do formulario exceto o campo primeiro senha
-        # When tentar se cadastrar novamente
-        # Then ele deverá receber uma mensagem de que o campo senha é obrigatório
+        Given que o cliente acesse o site Automation Exercise
+        And faça o pré-cadastro
+        And preencha todos os campos do formulario exceto o campo primeiro senha
+        When tentar se cadastrar novamente
+        Then ele deverá receber uma mensagem de que o campo senha é obrigatório
 
